@@ -2,7 +2,7 @@
   import { error } from '@sveltejs/kit';
   import type { PageData } from './$types';
   import { onMount } from 'svelte';
-
+  import Navbar from '../../components/Navbar.svelte';
   let hsCharacters: any = $state();
   onMount(async () => {
     hsCharacters = await fetch(
@@ -33,19 +33,28 @@
 </script>
 
 {console.log(hsCharacters)}
-<div class="container">
+<Navbar
+  data={[
+    { name: 'Single Character Dialogue', href: '/ngram/single' },
+    { name: 'Two character dialogue', href: '/ngram/duo' },
+    { name: 'Multi character dialogue', href: '/ngram/multi' },
+  ]}
+/>
+<!-- <div class="container">
   {#each cRange as x}
     <select name="characters" id="characters">
       <option disabled selected value> -- select an option -- </option>
       {#each hsCharacters as [k, v]}
-        <option value={v}>{v}</option>
+        <option value={k}>{k}({v} )</option>
       {/each}
     </select>
   {/each}
-</div>
+</div> -->
 <!-- {#each cRange as x}
   {x}
 {/each} -->
-<button onclick={increment}>Add new character</button>
+<!-- <button onclick={increment}>Add new character</button>
+<button onclick={decrement}>Remove character</button>
+<button>Create dialogue</button> -->
 
 <p>TESTING API</p>
